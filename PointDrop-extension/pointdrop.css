@@ -1,0 +1,941 @@
+/* =================================
+   PointDrop Root
+================================= */
+
+#pointdrop-root {
+
+  --pd-panel:
+    rgba(248, 248, 250, 0.94);
+
+  --pd-text:
+    #1d1d1f;
+
+  --pd-secondary:
+    #86868b;
+
+  --pd-border:
+    rgba(0, 0, 0, 0.08);
+
+  --pd-hover:
+    rgba(0, 0, 0, 0.045);
+
+  --pd-font:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "PingFang SC",
+    "Microsoft YaHei",
+    sans-serif;
+
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 0;
+
+  z-index: 2147483647;
+
+  font-family:
+    var(--pd-font);
+
+  color:
+    var(--pd-text);
+
+  line-height: normal;
+
+  pointer-events: none;
+
+}
+
+
+#pointdrop-root * {
+
+  box-sizing:
+    border-box;
+
+}
+
+
+
+/* =================================
+   Trigger
+================================= */
+
+#pointdrop-root
+.pd-trigger-zone {
+
+  position: fixed;
+
+  top: 0;
+  left: 50%;
+
+  transform:
+    translateX(-50%);
+
+  width: 150px;
+  height: 42px;
+
+  display: flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    flex-start;
+
+  pointer-events:
+    auto;
+
+}
+
+
+#pointdrop-root
+.pd-trigger {
+
+  width: 28px;
+  height: 7px;
+
+  background:
+    #1d1d1f;
+
+  border-radius:
+    0 0 5px 5px;
+
+  color:
+    white;
+
+  display: flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  cursor:
+    pointer;
+
+  overflow:
+    hidden;
+
+  opacity:
+    0.76;
+
+  box-shadow:
+    0 2px 5px
+    rgba(0, 0, 0, 0.18);
+
+  transition:
+
+    width
+    0.26s
+    cubic-bezier(.2,.8,.2,1),
+
+    height
+    0.26s
+    cubic-bezier(.2,.8,.2,1),
+
+    opacity
+    0.2s
+    ease;
+
+}
+
+
+#pointdrop-root
+.pd-trigger-small {
+
+  font-size: 0;
+
+}
+
+
+#pointdrop-root
+.pd-trigger-text {
+
+  font-size: 0;
+
+  opacity: 0;
+
+  white-space:
+    nowrap;
+
+  transition:
+    opacity
+    0.15s
+    ease;
+
+}
+
+
+#pointdrop-root
+.pd-trigger-zone:hover
+.pd-trigger {
+
+  width:
+    86px;
+
+  height:
+    29px;
+
+  opacity:
+    1;
+
+}
+
+
+#pointdrop-root
+.pd-trigger-zone:hover
+.pd-trigger-text {
+
+  font-size:
+    12px;
+
+  opacity:
+    1;
+
+}
+
+
+
+/* =================================
+   Panel
+================================= */
+
+#pointdrop-root
+.pd-panel {
+
+  position: fixed;
+
+  top:
+    13px;
+
+  left:
+    50%;
+
+  width:
+    min(
+      520px,
+      calc(100vw - 30px)
+    );
+
+  transform:
+    translate(
+      -50%,
+      calc(-100% - 40px)
+    );
+
+  opacity:
+    0;
+
+  background:
+    var(--pd-panel);
+
+  backdrop-filter:
+    blur(24px);
+
+  -webkit-backdrop-filter:
+    blur(24px);
+
+  border:
+    1px solid
+    rgba(255,255,255,.7);
+
+  border-radius:
+    16px;
+
+  box-shadow:
+
+    0 22px 55px
+    rgba(0,0,0,.18),
+
+    0 2px 8px
+    rgba(0,0,0,.07);
+
+  overflow:
+    hidden;
+
+  pointer-events:
+    auto;
+
+  transition:
+
+    transform
+    .3s
+    cubic-bezier(.2,.9,.2,1),
+
+    opacity
+    .22s
+    ease;
+
+}
+
+
+#pointdrop-root
+.pd-panel.pd-open {
+
+  transform:
+    translate(
+      -50%,
+      0
+    );
+
+  opacity:
+    1;
+
+}
+
+
+
+/* =================================
+   Capture
+================================= */
+
+#pointdrop-root
+.pd-capture {
+
+  padding:
+    20px 20px 13px;
+
+}
+
+
+#pointdrop-root
+.pd-header {
+
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    flex-start;
+
+  margin-bottom:
+    14px;
+
+}
+
+
+#pointdrop-root
+.pd-brand {
+
+  font-size:
+    13px;
+
+  font-weight:
+    650;
+
+  color:
+    var(--pd-text);
+
+}
+
+
+
+/* =================================
+   Draft Status
+================================= */
+
+#pointdrop-root
+.pd-draft-status {
+
+  margin-top:
+    3px;
+
+  color:
+    #b0b0b5;
+
+  font-size:
+    10px;
+
+  transition:
+    color
+    .2s
+    ease;
+
+}
+
+
+#pointdrop-root
+.pd-draft-status.pd-draft-active {
+
+  color:
+    #818187;
+
+}
+
+
+
+/* =================================
+   Close
+================================= */
+
+#pointdrop-root
+.pd-close {
+
+  appearance:
+    none;
+
+  border:
+    0;
+
+  outline:
+    0;
+
+  background:
+    transparent;
+
+  color:
+    #98989d;
+
+  width:
+    28px;
+
+  height:
+    28px;
+
+  border-radius:
+    8px;
+
+  font-family:
+    var(--pd-font);
+
+  font-size:
+    19px;
+
+  cursor:
+    pointer;
+
+}
+
+
+#pointdrop-root
+.pd-close:hover {
+
+  background:
+    var(--pd-hover);
+
+  color:
+    #444;
+
+}
+
+
+
+/* =================================
+   Input
+================================= */
+
+#pointdrop-root
+.pd-input {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  min-height:
+    72px;
+
+  margin:
+    0;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  outline:
+    0;
+
+  resize:
+    none;
+
+  background:
+    transparent;
+
+  box-shadow:
+    none;
+
+  color:
+    var(--pd-text);
+
+  font-family:
+    var(--pd-font);
+
+  font-size:
+    18px;
+
+  line-height:
+    1.55;
+
+}
+
+
+#pointdrop-root
+.pd-input::placeholder {
+
+  color:
+    #b2b2b7;
+
+}
+
+
+
+/* =================================
+   Footer
+================================= */
+
+#pointdrop-root
+.pd-footer {
+
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  color:
+    var(--pd-secondary);
+
+  font-size:
+    11px;
+
+  margin-top:
+    7px;
+
+}
+
+
+
+/* =================================
+   Saved
+================================= */
+
+#pointdrop-root
+.pd-saved {
+
+  display:
+    none;
+
+  height:
+    145px;
+
+  flex-direction:
+    column;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  color:
+    #555;
+
+  font-size:
+    13px;
+
+}
+
+
+#pointdrop-root
+.pd-saved.pd-show {
+
+  display:
+    flex;
+
+}
+
+
+#pointdrop-root
+.pd-saved-icon {
+
+  width:
+    30px;
+
+  height:
+    30px;
+
+  border-radius:
+    50%;
+
+  display:
+    flex;
+
+  justify-content:
+    center;
+
+  align-items:
+    center;
+
+  background:
+    #1d1d1f;
+
+  color:
+    white;
+
+}
+
+
+
+/* =================================
+   Inbox Toggle
+================================= */
+
+#pointdrop-root
+.pd-inbox-toggle {
+
+  appearance:
+    none;
+
+  width:
+    100%;
+
+  border:
+    0;
+
+  border-top:
+    1px solid
+    var(--pd-border);
+
+  padding:
+    12px 18px;
+
+  background:
+    transparent;
+
+  display:
+    flex;
+
+  justify-content:
+    space-between;
+
+  align-items:
+    center;
+
+  color:
+    #79797e;
+
+  font-family:
+    var(--pd-font);
+
+  font-size:
+    12px;
+
+  cursor:
+    pointer;
+
+}
+
+
+#pointdrop-root
+.pd-inbox-toggle:hover {
+
+  background:
+    rgba(0,0,0,.02);
+
+}
+
+
+
+/* =================================
+   Inbox
+================================= */
+
+#pointdrop-root
+.pd-inbox {
+
+  display:
+    none;
+
+  max-height:
+    410px;
+
+  overflow-y:
+    auto;
+
+  border-top:
+    1px solid
+    var(--pd-border);
+
+  padding:
+    13px 14px 17px;
+
+}
+
+
+#pointdrop-root
+.pd-inbox.pd-inbox-open {
+
+  display:
+    block;
+
+}
+
+
+
+/* =================================
+   Search
+================================= */
+
+#pointdrop-root
+.pd-search {
+
+  display:
+    block;
+
+  width:
+    100%;
+
+  margin:
+    0 0 14px;
+
+  padding:
+    10px 12px;
+
+  border:
+    1px solid
+    var(--pd-border);
+
+  border-radius:
+    10px;
+
+  outline:
+    0;
+
+  background:
+    rgba(0,0,0,.035);
+
+  color:
+    var(--pd-text);
+
+  font-family:
+    var(--pd-font);
+
+  font-size:
+    13px;
+
+  box-shadow:
+    none;
+
+}
+
+
+#pointdrop-root
+.pd-search:focus {
+
+  background:
+    white;
+
+  border-color:
+    rgba(0,0,0,.15);
+
+}
+
+
+
+/* =================================
+   Date Label
+================================= */
+
+#pointdrop-root
+.pd-section-label {
+
+  margin:
+    12px 7px 6px;
+
+  color:
+    #aaa;
+
+  font-size:
+    10px;
+
+  font-weight:
+    650;
+
+  letter-spacing:
+    .7px;
+
+}
+
+
+
+/* =================================
+   Point
+================================= */
+
+#pointdrop-root
+.pd-point {
+
+  position:
+    relative;
+
+  padding:
+    10px 40px 10px 9px;
+
+  border-radius:
+    10px;
+
+  transition:
+    background
+    .15s
+    ease;
+
+}
+
+
+#pointdrop-root
+.pd-point:hover {
+
+  background:
+    var(--pd-hover);
+
+}
+
+
+#pointdrop-root
+.pd-point-content {
+
+  color:
+    var(--pd-text);
+
+  font-size:
+    13px;
+
+  line-height:
+    1.55;
+
+  white-space:
+    pre-wrap;
+
+  word-break:
+    break-word;
+
+}
+
+
+#pointdrop-root
+.pd-point-meta {
+
+  margin-top:
+    4px;
+
+  color:
+    #aaa;
+
+  font-size:
+    10px;
+
+}
+
+
+
+/* =================================
+   Delete
+================================= */
+
+#pointdrop-root
+.pd-delete {
+
+  appearance:
+    none;
+
+  position:
+    absolute;
+
+  top:
+    7px;
+
+  right:
+    7px;
+
+  width:
+    28px;
+
+  height:
+    28px;
+
+  padding:
+    0;
+
+  border:
+    0;
+
+  border-radius:
+    8px;
+
+  background:
+    transparent;
+
+  color:
+    #aaa;
+
+  font-family:
+    var(--pd-font);
+
+  font-size:
+    17px;
+
+  opacity:
+    0;
+
+  cursor:
+    pointer;
+
+}
+
+
+#pointdrop-root
+.pd-point:hover
+.pd-delete {
+
+  opacity:
+    1;
+
+}
+
+
+#pointdrop-root
+.pd-delete:hover {
+
+  background:
+    rgba(0,0,0,.055);
+
+  color:
+    #333;
+
+}
+
+
+
+/* =================================
+   Empty
+================================= */
+
+#pointdrop-root
+.pd-empty {
+
+  padding:
+    32px 10px;
+
+  text-align:
+    center;
+
+  color:
+    #aaa;
+
+  font-size:
+    12px;
+
+}
